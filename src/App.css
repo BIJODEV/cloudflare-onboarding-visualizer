@@ -1,0 +1,29 @@
+.container {
+  text-align: center;
+  padding: 4rem;
+  font-family: sans-serif;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  background-color: #f38020;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #d96c1a;
+}
