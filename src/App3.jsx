@@ -242,7 +242,7 @@ export default function App() {
                         <div className="w-3 h-3 bg-purple-500 rounded-full mr-2"></div>
                         <span><strong>Connection 2:</strong> Cloudflare → Origin (Optimized)</span>
                     </div>
-                    <p className="text-blue-700 mt-2">SSL termination at edge reduces origin server load by 40%</p>
+                    <p className="text-blue-700 mt-2"></p>
                     </div>
                 </div>
 
