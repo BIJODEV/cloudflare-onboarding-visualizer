@@ -1,5 +1,6 @@
 {
-  "name": "cloudflare-onboarding",
+  "name": "cloudflare-onboarding-visualizer",
+  "homepage": "https://bijodev.github.io/cloudflare-onboarding-visualizer/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
