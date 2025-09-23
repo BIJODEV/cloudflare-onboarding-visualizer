@@ -248,7 +248,7 @@ export default function App() {
 
                 {/* WAF Rules Details */}
                 <div className="bg-red-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-red-800 mb-2">Web Application Firewall (599+ Rules)</h4>
+                    <h4 className="font-semibold text-purple-800 mb-2">Web Application Firewall (599+ Rules)</h4>
                     <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                         <span>OWASP Core Ruleset:</span>
