@@ -99,7 +99,7 @@ export default function Diagram({ stage }) {
     if (stage === "proxy") {
       stageNodes.push({
         id: "cloudflare-proxy",
-        position: { x: 230, y: 200 },
+        position: { x: 200, y: 200 },
         data: { 
           emoji: "🛡️", 
           title: "Cloudflare Proxy",
