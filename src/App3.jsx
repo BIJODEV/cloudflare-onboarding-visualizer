@@ -270,8 +270,8 @@ export default function App() {
                 <div className="mt-4 bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
                 <h4 className="font-semibold text-yellow-800 mb-2">Safe Deployment Strategy</h4>
                 <div className="text-sm text-yellow-700">
-                    <p><strong>Phase 1 (Week 1):</strong> All WAF rules set to "LOG" mode - monitor traffic without blocking</p>
-                    <p><strong>Phase 2 (Week 2):</strong> Critical rules moved to "BLOCK" mode after validation</p>
+                    <p><strong>Phase 1:</strong> All WAF rules set to "LOG" mode - monitor traffic without blocking</p>
+                    <p><strong>Phase 2:</strong> Critical rules moved to "BLOCK" mode after validation</p>
                     {/* <p><strong>Phase 3 (Week 3):</strong> Full protection enabled with optimized rule configuration</p> */}
                 </div>
                 </div>
