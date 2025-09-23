@@ -272,7 +272,7 @@ export default function App() {
                 <div className="text-sm text-yellow-700">
                     <p><strong>Phase 1 (Week 1):</strong> All WAF rules set to "LOG" mode - monitor traffic without blocking</p>
                     <p><strong>Phase 2 (Week 2):</strong> Critical rules moved to "BLOCK" mode after validation</p>
-                    <p><strong>Phase 3 (Week 3):</strong> Full protection enabled with optimized rule configuration</p>
+                    {/* <p><strong>Phase 3 (Week 3):</strong> Full protection enabled with optimized rule configuration</p> */}
                 </div>
                 </div>
             </div>
@@ -285,17 +285,17 @@ export default function App() {
           <div className={`text-center z-10 ${stage === 'before' ? 'scale-110' : ''}`}>
             <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-2 text-white font-bold">1</div>
             <div className="font-semibold">Current State</div>
-            <div className="text-xs text-gray-500">Week 1: Assessment</div>
+            <div className="text-xs text-gray-500">Assessment</div>
           </div>
           <div className={`text-center z-10 ${stage === 'dnsOnly' ? 'scale-110' : ''}`}>
             <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-2 text-white font-bold">2</div>
             <div className="font-semibold">DNS Migration</div>
-            <div className="text-xs text-gray-500">Week 2: Cutover</div>
+            <div className="text-xs text-gray-500">Cutover</div>
           </div>
           <div className={`text-center z-10 ${stage === 'proxy' ? 'scale-110' : ''}`}>
             <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-2 text-white font-bold">3</div>
             <div className="font-semibold">Proxy Enable</div>
-            <div className="text-xs text-gray-500">Week 3: Optimization</div>
+            <div className="text-xs text-gray-500">Optimization</div>
           </div>
           <div className="absolute top-6 left-20 right-20 h-1 bg-gray-300 -z-0"></div>
         </div>
