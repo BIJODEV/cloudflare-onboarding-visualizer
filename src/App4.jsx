@@ -1,11 +1,11 @@
-// src/App.jsx
 import React, { useState, useEffect } from "react";
 import Diagram from "./components/DNSFlow3.jsx";
+import SimpleDrawToolbar from "./components/SimpleDrawToolbar.jsx";
 
 const STAGES = {
   before: {
     title: "Current State: Direct Connection",
-    description: "Users connect directly to our AWS infrastructure without security filtering",
+    description: "Users connect directly to the Route 53 without security filtering",
     businessImpact: "✓ Full control\n✗ No attack protection\n✗ Performance varies globally\n✗ SSL overhead on origin",
     risks: ["DDoS attacks directly hit servers", "No WAF protection", "Global latency issues", "SSL computational costs"],
     color: "blue"
@@ -39,6 +39,7 @@ export default function App() {
   const [stage, setStage] = useState("before");
   const [isRevealed, setIsRevealed] = useState(false);
   const [curtainPosition, setCurtainPosition] = useState(0);
+  const [showWhiteboard, setShowWhiteboard] = useState(false);
 
     // Auto-reveal after a delay, or on click
     useEffect(() => {
@@ -118,6 +119,21 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 flex flex-col items-center justify-center p-8">
+
+      {/* Add Whiteboard Toggle Button */}
+        <div className="fixed top-4 right-4 z-50">
+            <button
+            onClick={() => setShowWhiteboard(!showWhiteboard)}
+            className={`px-4 py-2 rounded-lg font-semibold shadow-lg transition-all ${
+                showWhiteboard
+                ? 'bg-red-500 text-white hover:bg-red-600'
+                : 'bg-blue-500 text-white hover:bg-blue-600'
+            }`}
+            >
+            {showWhiteboard ? '✖ Hide Whiteboard' : '🖊️ Show Whiteboard'}
+            </button>
+        </div>  
+
       {/* Executive Header */}
       <div className="text-center mb-8 max-w-4xl">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">
@@ -173,12 +189,29 @@ export default function App() {
         <p className="text-gray-600 mb-4">{STAGES[stage].description}</p>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-700 mb-2">Business Impact</h3>
-            <div className="whitespace-pre-line text-sm bg-white p-3 rounded">
-              {STAGES[stage].businessImpact}
+            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                <div className="flex items-center mb-2">
+                    <span className="text-blue-600 text-lg mr-2">📊</span>
+                    <h3 className="font-semibold text-gray-800 text-sm uppercase tracking-wide">Business Impact</h3>
+                </div>
+                <div className="space-y-2">
+                    {STAGES[stage].businessImpact.split('\n').map((line, index) => {
+                    const isPositive = line.includes('✓');
+                    const isNegative = line.includes('✗');
+                    
+                    return (
+                        <div key={index} className="flex items-center text-sm">
+                        <span className={`mr-2 ${isPositive ? 'text-green-500' : isNegative ? 'text-red-500' : 'text-blue-500'}`}>
+                            {isPositive ? '✓' : isNegative ? '✗' : '•'}
+                        </span>
+                        <span className="text-gray-700">
+                            {line.replace('✓', '').replace('✗', '').trim()}
+                        </span>
+                        </div>
+                    );
+                    })}
+                </div>
             </div>
-          </div>
           
           <div className="bg-gray-50 p-4 rounded-lg">
             <h3 className="font-semibold text-gray-700 mb-2">
@@ -224,8 +257,8 @@ export default function App() {
             </div>
 
       {/* Executive Summary */}
-      {/* Security Details Panel - Show only in Proxy state */}
-            {stage === 'proxy' && (
+        {/* Security Details Panel - Show only in Proxy state */}
+        {stage === 'proxy' && (
             <div className="bg-white rounded-xl shadow-lg p-6 max-w-4xl w-full mt-4 border-l-4 border-purple-500">
                 <h3 className="text-xl font-bold text-gray-800 mb-4">Security Architecture Details</h3>
                 
@@ -270,36 +303,37 @@ export default function App() {
                 <div className="mt-4 bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
                 <h4 className="font-semibold text-yellow-800 mb-2">Safe Deployment Strategy</h4>
                 <div className="text-sm text-yellow-700">
-                    <p><strong>Phase 1:</strong> All WAF rules set to "LOG" mode - monitor traffic without blocking</p>
-                    <p><strong>Phase 2:</strong> Critical rules moved to "BLOCK" mode after validation</p>
-                    {/* <p><strong>Phase 3 (Week 3):</strong> Full protection enabled with optimized rule configuration</p> */}
+                    <p><strong>Phase 1 :</strong> All WAF rules set to "LOG" mode - monitor traffic without blocking</p>
+                    <p><strong>Phase 2 :</strong> Critical rules moved to "BLOCK" mode after validation</p>
+                    {/* <p><strong>Phase 3 (Optional):</strong> Full protection enabled with optimized rule configuration</p> */}
                 </div>
                 </div>
             </div>
-            )}
+        )}
 
-      {/* Migration Timeline */}
-      <div className="bg-white rounded-xl shadow-lg p-6 max-w-4xl w-full mt-6">
-        <h3 className="text-xl font-bold text-gray-800 mb-4">Project Timeline & Risk Mitigation</h3>
-        <div className="flex justify-between items-center relative">
-          <div className={`text-center z-10 ${stage === 'before' ? 'scale-110' : ''}`}>
-            <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-2 text-white font-bold">1</div>
-            <div className="font-semibold">Current State</div>
-            <div className="text-xs text-gray-500">Assessment</div>
-          </div>
-          <div className={`text-center z-10 ${stage === 'dnsOnly' ? 'scale-110' : ''}`}>
-            <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-2 text-white font-bold">2</div>
-            <div className="font-semibold">DNS Migration</div>
-            <div className="text-xs text-gray-500">Cutover</div>
-          </div>
-          <div className={`text-center z-10 ${stage === 'proxy' ? 'scale-110' : ''}`}>
-            <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-2 text-white font-bold">3</div>
-            <div className="font-semibold">Proxy Enable</div>
-            <div className="text-xs text-gray-500">Optimization</div>
-          </div>
-          <div className="absolute top-6 left-20 right-20 h-1 bg-gray-300 -z-0"></div>
+        {/* Migration Timeline */}
+        <div className="bg-white rounded-xl shadow-lg p-6 max-w-4xl w-full mt-6">
+            <h3 className="text-xl font-bold text-gray-800 mb-4">Project Timeline & Risk Mitigation</h3>
+            <div className="flex justify-between items-center relative">
+            <div className={`text-center z-10 ${stage === 'before' ? 'scale-110' : ''}`}>
+                <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-2 text-white font-bold">1</div>
+                <div className="font-semibold">Current State</div>
+                <div className="text-xs text-gray-500">Assessment</div>
+            </div>
+            <div className={`text-center z-10 ${stage === 'dnsOnly' ? 'scale-110' : ''}`}>
+                <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-2 text-white font-bold">2</div>
+                <div className="font-semibold">DNS Migration</div>
+                <div className="text-xs text-gray-500">Cutover</div>
+            </div>
+            <div className={`text-center z-10 ${stage === 'proxy' ? 'scale-110' : ''}`}>
+                <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-2 text-white font-bold">3</div>
+                <div className="font-semibold">Proxy Enable</div>
+                <div className="text-xs text-gray-500">Optimization</div>
+            </div>
+            <div className="absolute top-6 left-20 right-20 h-1 bg-gray-300 -z-0"></div>
+            </div>
         </div>
-      </div>
+        {showWhiteboard && <SimpleDrawToolbar />}
     </div>
   );
 }

@@ -1,12 +1,27 @@
-# React + Vite
+# Cloudflare Onboarding Visualizer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive presentation tool that demonstrates the DNS and proxy migration process from AWS Route53 to Cloudflare, designed for executive audiences.
 
-Currently, two official plugins are available:
+## 🎯 Purpose
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This tool helps technical teams explain Cloudflare migration strategies to non-technical stakeholders through interactive visualizations and business-focused messaging.
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Three Migration States**: Visualize current, transition, and target states
+- **Interactive Diagrams**: Click-to-explore Cloudflare feature details
+- **Executive Focus**: Business impact analysis and ROI messaging
+- **Professional Reveal**: Curtain animation for engaging presentations
+- **Responsive Design**: Works on desktop and presentation displays
+
+## 🚀 Quick Start
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build

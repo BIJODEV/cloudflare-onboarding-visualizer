@@ -99,7 +99,7 @@ export default function Diagram({ stage }) {
     if (stage === "proxy") {
       stageNodes.push({
         id: "cloudflare-proxy",
-        position: { x: 230, y: 200 },
+        position: { x: 150, y: 200 },
         data: { 
           emoji: "🛡️", 
           title: "Cloudflare Proxy",
@@ -114,7 +114,7 @@ export default function Diagram({ stage }) {
           id: "client-to-proxy",
           source: "client",
           target: "cloudflare-proxy",
-          label: "1. Secure HTTPS\nTLS 1.3 Encrypted",
+          label: "Secure HTTPS\nTLS 1.3 Encrypted",
           style: getEdgeStyle('proxy-client'),
           animated: true,
         },
@@ -122,7 +122,7 @@ export default function Diagram({ stage }) {
           id: "proxy-to-origin",
           source: "cloudflare-proxy",
           target: "origin",
-          label: "2. Optimized Connection\nWAF Protected",
+          // label: "2. Optimized Connection\nWAF Protected",
           style: getEdgeStyle('proxy-origin'),
           animated: true,
         },
